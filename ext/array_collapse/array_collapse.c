@@ -1,9 +1,5 @@
 #include "ruby.h"
 
-// Defining a space for information and references about the module to be stored internally
-VALUE ArrayCollapse = Qnil;
-
-// Prototype for the initialization method - Ruby calls this, not you
 void Init_array_collapse();
 
 VALUE method_collapse(VALUE self, VALUE args) {
@@ -46,7 +42,6 @@ VALUE method_collapse(VALUE self, VALUE args) {
 	return result;
 }
 
-// The initialization method for this module
 void Init_array_collapse() {
 	rb_define_method(rb_cArray, "collapse", method_collapse, -2);
 }
