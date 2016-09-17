@@ -1,0 +1,2 @@
+# array-collapse
+Array#collapse
