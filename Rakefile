@@ -1,6 +1,18 @@
-require "bundler/gem_tasks"
-require "rspec/core/rake_task"
+require 'bundler'
+Bundler.setup
 
-RSpec::Core::RakeTask.new(:spec)
+require 'rake'
+require 'rake/extensiontask'
+require 'rubygems/package_task'
+require 'rspec/core/rake_task'
 
-task :default => :spec
+gem = Gem::Specification.load( File.dirname(__FILE__) + '/array_collapse.gemspec' )
+Rake::ExtensionTask.new( 'array_collapse', gem )
+
+Gem::PackageTask.new gem  do |pkg|
+  pkg.need_zip = pkg.need_tar = false
+end
+
+RSpec::Core::RakeTask.new :spec
+
+task :default => [:compile, :spec]

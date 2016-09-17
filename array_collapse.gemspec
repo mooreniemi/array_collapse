@@ -14,16 +14,17 @@ Gem::Specification.new do |spec|
   spec.extensions = ['ext/array_collapse/extconf.rb']
   spec.require_paths = ['lib']
   spec.files         = [
+    'LICENSE',
+    'README.md',
+    'lib/.gemkeep',
     'ext/array_collapse/extconf.rb',
     'ext/array_collapse/array_collapse.c',
-    'README.md',
-    'LICENSE',
-    'lib/.gemkeep'
   ]
   spec.test_files = Dir['spec/**/*_spec.rb']
 
   spec.add_development_dependency 'bundler', '~> 1.12'
   spec.add_development_dependency 'rake', '~> 10.0'
+  spec.add_development_dependency 'rake-compiler'
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'pry'
 end
