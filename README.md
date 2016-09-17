@@ -2,7 +2,13 @@
 
 A C extension alternative to using `flatten.compact` or `flatten.map`.
 Slight performance improvement (just a constant factor better) than the
-common idioms, with exactly the same memory performance.
+common idioms, with exactly the same memory performance. See [this blog
+post](http://mooreniemi.github.io/2016/09/15/flatten.html) for the charts.
+
+`collapse` also makes one other slightly different choice from core Ruby's
+`flatten`. Attempting to `flatten` a recursive Array will error normally.
+`collapse` just drops the recursive reference, and continues on its merry
+way.
 
 ## Installation
 
@@ -29,14 +35,22 @@ Or install it yourself as:
  => [2, 4, 6]
 2.2.2 :003 > [1, [2, [3, nil]]].collapse
  => [1, 2, 3]
+2.2.2 :004 > a = [1, [2, [3]]]
+ => [1, [2, [3]]]
+2.2.2 :005 > a << a
+ => [1, [2, [3]], [...]]
+2.2.2 :006 > a.collapse {|e| e * 3 }
+ => [3, 6, 9]
+2.2.2 :007 > a.flatten
+ => ArgumentError: tried to flatten recursive array
 ```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at
-https://github.com/mooreniemi/array_collapse. This project is intended to
-be a safe, welcoming space for collaboration, and contributors are
-expected to adhere to the [Contributor
+Bug reports and pull requests are welcome on
+[GitHub](https://github.com/mooreniemi/array_collapse). This project is
+intended to be a safe, welcoming space for collaboration, and contributors
+are expected to adhere to the [Contributor
 Covenant](http://contributor-covenant.org) code of conduct.
 
 

@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = 'array_collapse'
-  spec.version       = '0.0.1'
+  spec.version       = '0.0.2'
   spec.authors       = ['Alex Moore-Niemi']
   spec.email         = ['moore.niemi@gmail.com']
 
