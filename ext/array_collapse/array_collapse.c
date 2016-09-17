@@ -6,6 +6,10 @@ VALUE method_collapse(VALUE self, VALUE args) {
   long len = RARRAY_LEN(self);
   VALUE result = rb_ary_new2(len);
   VALUE stack = rb_ary_new();
+  st_table *seen_nodes;
+  st_data_t id;
+  seen_nodes = st_init_numtable();
+  st_insert(seen_nodes, (st_data_t)self, (st_data_t)Qtrue);
 
 #ifdef LOGGING
   FILE *f = fopen("clog.txt", "w");
@@ -23,8 +27,14 @@ VALUE method_collapse(VALUE self, VALUE args) {
     long i;
     for(i = 0; i < RARRAY_LEN(array); i++) {
       VALUE e = RARRAY_AREF(array,i);
+      id = (st_data_t)e;
+      if (st_lookup(seen_nodes, id, 0)) {
+        // drop recursive node
+        break;
+      }
       switch (TYPE(e)) {
         case T_ARRAY:
+          st_insert(seen_nodes, id, (st_data_t)Qtrue);
           rb_ary_push(stack, e);
           break;
         default:
@@ -38,7 +48,7 @@ VALUE method_collapse(VALUE self, VALUE args) {
       }
     }
   }
-
+  st_free_table(seen_nodes);
   return result;
 }
 
