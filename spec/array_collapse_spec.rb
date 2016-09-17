@@ -1,3 +1,5 @@
+require 'array_collapse'
+
 RSpec.describe 'Array#collapse' do
   it 'lives on Array' do
     expect([1].respond_to?(:collapse)).to eq(true)
