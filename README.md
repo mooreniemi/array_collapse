@@ -9,10 +9,12 @@ common idioms, with exactly the same memory performance.
 See [this blog post](http://mooreniemi.github.io/2016/09/15/flatten.html)
 for the background and a chart of memory performance.
 
-In addition, `collapse` makes one other slightly different choice from
-core Ruby's `flatten`. Attempting to `flatten` a recursive Array will
+In addition, `collapse` makes two other slightly different choices from
+core Ruby's `flatten`. 1. Attempting to `flatten` a recursive Array will
 error normally. `collapse` just drops the recursive reference, and
-continues on its merry way.
+continues on its merry way. 2. `collapse` doesn't accept
+a [level](https://ruby-doc.org/core-2.2.0/Array.html#method-i-flatten)
+argument. It's all or nothing.
 
 ## Disclaimer
 
