@@ -1,5 +1,8 @@
 # Array#collapse
 
+A C extension alternative to using `flatten.compact` or `flatten.map`.
+Slight performance improvement (just a constant factor better) than the
+common idioms, with exactly the same memory performance.
 
 ## Installation
 
@@ -24,7 +27,8 @@ Or install it yourself as:
  => true
 2.2.2 :002 > [1, 2, [3], nil].collapse {|e| e.nil? ? e : e * 2 }
  => [2, 4, 6]
-2.2.2 :003 >
+2.2.2 :003 > [1, [2, [3, nil]]].collapse
+ => [1, 2, 3]
 ```
 
 ## Development
