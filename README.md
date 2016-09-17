@@ -2,13 +2,23 @@
 
 A C extension alternative to using `flatten.compact` or `flatten.map`.
 Slight performance improvement (just a constant factor better) than the
-common idioms, with exactly the same memory performance. See [this blog
-post](http://mooreniemi.github.io/2016/09/15/flatten.html) for the charts.
+common idioms, with exactly the same memory performance.
 
-`collapse` also makes one other slightly different choice from core Ruby's
-`flatten`. Attempting to `flatten` a recursive Array will error normally.
-`collapse` just drops the recursive reference, and continues on its merry
-way.
+![collapse performance](perf.jpg)
+
+See [this blog post](http://mooreniemi.github.io/2016/09/15/flatten.html)
+for the background and a chart of memory performance.
+
+In addition, `collapse` makes one other slightly different choice from
+core Ruby's `flatten`. Attempting to `flatten` a recursive Array will
+error normally. `collapse` just drops the recursive reference, and
+continues on its merry way.
+
+## Disclaimer
+
+Should you use this? Needing to compile a native extension for
+a performance benefit that is not asymptotic is a trade-off I wouldn't
+always make myself.
 
 ## Installation
 
