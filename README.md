@@ -4,7 +4,7 @@ A C extension alternative to using `flatten.compact` or `flatten.map`.
 Slight performance improvement (just a constant factor better) than the
 common idioms, with exactly the same memory performance.
 
-![collapse performance](perf.jpg)
+![collapse performance](perf.gif)
 
 See [this blog post](http://mooreniemi.github.io/2016/09/15/flatten.html)
 for the background and a chart of memory performance.
